@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Landscaping & Hardscaping Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-700">
+                    Premier Landscapes
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#landscaping" class="text-gray-700 hover:text-green-600 transition duration-300">Landscaping</a>
+                    <a href="#pavement" class="text-gray-700 hover:text-green-600 transition duration-300">Pavement</a>
+                    <a href="#other-services" class="text-gray-700 hover:text-green-600 transition duration-300">Other Services</a>
+                    <a href="#contact" class="text-gray-700 hover:text-green-600 transition duration-300">Contact</a>
+                </div>
+                <button class="md:hidden" id="menu-toggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-green-800 to-green-600 text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-6">Transform Your Outdoor Space</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Professional landscaping, hardscaping, and pavement services to bring your vision to life. Creating beautiful, functional outdoor spaces for over a decade.</p>
+            <a href="#landscaping" class="bg-white text-green-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Landscaping Section -->
+    <section id="landscaping" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Landscaping Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Create stunning outdoor environments with our comprehensive landscaping solutions. From design to installation, we bring nature's beauty to your doorstep.</p>
+            </div>
+            
+            <!-- Landscaping Carousel -->
+            <div class="carousel-container mb-12 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
+                <div class="carousel-track" id="landscaping-track">
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Landscaping Service 1" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Landscaping Service 2" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Landscaping Service 3" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Landscaping Service 4" class="w-full h-96 object-cover">
+                    </div>
+                </div>
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition duration-300" onclick="previousSlide('landscaping')">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition duration-300" onclick="nextSlide('landscaping')">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4m0 4v8m0-8h6m0 0V5m0 4v8M3 17h18"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Garden Design</h3>
+                    <p class="text-gray-600">Custom garden layouts that complement your home's architecture and reflect your personal style preferences.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Plant Installation</h3>
+                    <p class="text-gray-600">Professional selection and installation of trees, shrubs, and flowers that thrive in your local climate.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Irrigation Systems</h3>
+                    <p class="text-gray-600">Efficient watering solutions to keep your landscape healthy while conserving water and reducing maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pavement Section -->
+    <section id="pavement" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Pavement & Hardscaping</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Durable, beautiful hardscaping solutions including driveways, walkways, patios, and retaining walls that enhance your property's functionality and value.</p>
+            </div>
+            
+            <!-- Pavement Carousel -->
+            <div class="carousel-container mb-12 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
+                <div class="carousel-track" id="pavement-track">
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Pavement Service 1" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Pavement Service 2" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Pavement Service 3" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Pavement Service 4" class="w-full h-96 object-cover">
+                    </div>
+                </div>
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition duration-300" onclick="previousSlide('pavement')">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition duration-300" onclick="nextSlide('pavement')">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Driveways</h3>
+                    <p class="text-gray-600">Stunning, durable driveways using premium materials like concrete, asphalt, and decorative pavers.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Walkways & Patios</h3>
+                    <p class="text-gray-600">Beautiful pathways and outdoor living spaces that connect and enhance your landscape design.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Retaining Walls</h3>
+                    <p class="text-gray-600">Functional and attractive retaining walls that prevent erosion while adding visual interest to your landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Services Section -->
+    <section id="other-services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Other Professional Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Complete your outdoor transformation with our additional services including fencing, outdoor lighting, water features, and ongoing maintenance programs.</p>
+            </div>
+            
+            <!-- Other Services Carousel -->
+            <div class="carousel-container mb-12 rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
+                <div class="carousel-track" id="other-track">
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Other Service 1" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Other Service 2" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Other Service 3" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://www.solterra-connect.com/uploads/2/3/8/0/23806366/sol-landscape-google202208a_orig.png" alt="Other Service 4" class="w-full h-96 object-cover">
+                    </div>
+                </div>
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition duration-300" onclick="previousSlide('other')">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition duration-300" onclick="nextSlide('other')">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fencing Solutions</h3>
+                    <p class="text-gray-600">Privacy, decorative, and security fencing options in wood, vinyl, metal, and composite materials.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Outdoor Lighting</h3>
+                    <p class="text-gray-600">Landscape lighting systems that enhance security, safety, and the beauty of your outdoor spaces.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-green-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Maintenance Programs</h3>
+                    <p class="text-gray-600">Comprehensive care packages to keep your landscape looking pristine throughout every season.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Contact Form -->
+    <footer id="contact" class="bg-gray-800 text-white py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Get In Touch</h2>
+                    <p class="text-gray-300 mb-8">Ready to transform your outdoor space? Contact us today for a free consultation and estimate.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span>(555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>info@premierlandscapes.com</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-green-400 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>123 Main Street<br>Your City, State 12345</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Request a Quote</h3>
+                    <form class="space-y-4" id="contact-form">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Your Phone" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                                <option value="">Select Service</option>
+                                <option value="landscaping">Landscaping</option>
+                                <option value="pavement">Pavement & Hardscaping</option>
+                                <option value="fencing">Fencing</option>
+                                <option value="lighting">Outdoor Lighting</option>
+                                <option value="maintenance">Maintenance</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <textarea placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 mt-12 text-center text-gray-400">
+                <p>&copy; 2024 Premier Landscapes. All rights reserved. | Licensed & Insured</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        const carousels = {
+            landscaping: { currentSlide: 0, totalSlides: 4 },
+            pavement: { currentSlide: 0, totalSlides: 4 },
+            other: { currentSlide: 0, totalSlides: 4 }
+        };
+
+        function nextSlide(carouselName) {
+            const carousel = carousels[carouselName];
+            carousel.currentSlide = (carousel.currentSlide + 1) % carousel.totalSlides;
+            updateCarousel(carouselName);
+        }
+
+        function previousSlide(carouselName) {
+            const carousel = carousels[carouselName];
+            carousel.currentSlide = (carousel.currentSlide - 1 + carousel.totalSlides) % carousel.totalSlides;
+            updateCarousel(carouselName);
+        }
+
+        function updateCarousel(carouselName) {
+            const track = document.getElementById(`${carouselName}-track`);
+            const carousel = carousels[carouselName];
+            const translateX = -carousel.currentSlide * 100;
+            track.style.transform = `translateX(${translateX}%)`;
+        }
+
+        // Auto-advance carousels
+        setInterval(() => {
+            Object.keys(carousels).forEach(carouselName => {
+                nextSlide(carouselName);
+            });
+        }, 5000);
+
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            // Add mobile menu functionality if needed
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will contact you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html> 
