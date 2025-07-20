@@ -48,6 +48,9 @@
                     <button onclick="downloadFiles()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
                         Download Files
                     </button>
+                    <button onclick="showSettings()" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                        Settings
+                    </button>
                     <button onclick="resetToOriginal()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
                         Reset All
                     </button>
@@ -292,6 +295,68 @@
                 <li>Click "Download Files" to get the updated translation files</li>
                 <li>Replace the files in your translations folder with the downloaded ones</li>
             </ol>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold">⚙️ Website Settings</h2>
+                        <button onclick="hideSettings()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    
+                    <!-- Google Sheets Integration -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold mb-4 text-green-700">📊 Google Sheets Integration</h3>
+                        <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-4">
+                            <p class="text-blue-800 text-sm">
+                                📋 Follow the instructions in <strong>setup-google-sheets.md</strong> to set up Google Sheets integration, 
+                                then paste your Google Apps Script URL below.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Google Apps Script URL</label>
+                                <input type="url" id="googleScriptURL" placeholder="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" 
+                                       class="w-full border rounded px-3 py-2 text-sm">
+                                <p class="text-xs text-gray-600 mt-1">
+                                    This URL comes from deploying your Google Apps Script as a web app
+                                </p>
+                            </div>
+                            
+                            <div class="flex space-x-3">
+                                <button onclick="saveGoogleScriptURL()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                                    Save URL
+                                </button>
+                                <button onclick="testGoogleSheets()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                                    Test Connection
+                                </button>
+                                <button onclick="clearGoogleScriptURL()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                                    Clear
+                                </button>
+                            </div>
+                            
+                            <div id="connectionStatus" class="mt-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Instructions -->
+                    <div class="bg-gray-50 border p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">How to Set Up Google Sheets:</h4>
+                        <ol class="text-sm space-y-1 list-decimal list-inside text-gray-700">
+                            <li>Open the <code>setup-google-sheets.md</code> file for detailed instructions</li>
+                            <li>Create a Google Sheet and Apps Script</li>
+                            <li>Deploy the script as a web app</li>
+                            <li>Copy the web app URL and paste it above</li>
+                            <li>Test the connection to make sure it works</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -587,6 +652,96 @@
         function handleDragEnd(e) {
             e.target.style.opacity = '1';
             draggedElement = null;
+        }
+
+        // Settings functions
+        function showSettings() {
+            document.getElementById('settingsModal').classList.remove('hidden');
+            loadGoogleScriptURL();
+        }
+        
+        function hideSettings() {
+            document.getElementById('settingsModal').classList.add('hidden');
+        }
+        
+        function loadGoogleScriptURL() {
+            const url = localStorage.getItem('googleScriptURL') || 'https://script.google.com/macros/s/AKfycbzvqmQPsUkkJnnd1z-ML7Z2QXDo7i88ZNazjco-NtSgkrfiuT98q9F_Nsnt66G4TOZP/exec';
+            document.getElementById('googleScriptURL').value = url;
+            
+            // Auto-save the provided URL if none exists
+            if (!localStorage.getItem('googleScriptURL')) {
+                localStorage.setItem('googleScriptURL', url);
+                updateWebsiteGoogleScriptURL(url);
+            }
+        }
+        
+        function saveGoogleScriptURL() {
+            const url = document.getElementById('googleScriptURL').value.trim();
+            if (url) {
+                localStorage.setItem('googleScriptURL', url);
+                showConnectionStatus('✅ Google Script URL saved successfully!', 'success');
+                updateWebsiteGoogleScriptURL(url);
+            } else {
+                showConnectionStatus('❌ Please enter a valid URL', 'error');
+            }
+        }
+        
+        function clearGoogleScriptURL() {
+            localStorage.removeItem('googleScriptURL');
+            document.getElementById('googleScriptURL').value = '';
+            showConnectionStatus('🗑️ Google Script URL cleared', 'info');
+            updateWebsiteGoogleScriptURL('');
+        }
+        
+        function updateWebsiteGoogleScriptURL(url) {
+            // This will update the website's form to use the new URL
+            localStorage.setItem('websiteGoogleScriptURL', url);
+        }
+        
+        async function testGoogleSheets() {
+            const url = document.getElementById('googleScriptURL').value.trim();
+            if (!url) {
+                showConnectionStatus('❌ Please enter a URL first', 'error');
+                return;
+            }
+            
+            showConnectionStatus('🔄 Testing connection...', 'info');
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors' // Required for Google Apps Script
+                });
+                
+                // Since we can't read the response due to no-cors, 
+                // we'll assume success if no error was thrown
+                showConnectionStatus('✅ Connection test successful! The URL appears to be working.', 'success');
+                
+            } catch (error) {
+                showConnectionStatus('❌ Connection test failed. Please check your URL.', 'error');
+            }
+        }
+        
+        function showConnectionStatus(message, type) {
+            const statusDiv = document.getElementById('connectionStatus');
+            const colors = {
+                success: 'bg-green-50 border-green-200 text-green-800',
+                error: 'bg-red-50 border-red-200 text-red-800',
+                info: 'bg-blue-50 border-blue-200 text-blue-800'
+            };
+            
+            statusDiv.innerHTML = `
+                <div class="p-3 border rounded-lg ${colors[type]}">
+                    ${message}
+                </div>
+            `;
+            
+            // Clear status after 5 seconds for non-error messages
+            if (type !== 'error') {
+                setTimeout(() => {
+                    statusDiv.innerHTML = '';
+                }, 5000);
+            }
         }
 
         // Initialize

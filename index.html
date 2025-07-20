@@ -300,16 +300,16 @@
                     <h3 class="text-2xl font-bold mb-6" data-translate="contact.form.title">Request a Quote</h3>
                     <form class="space-y-4" id="contact-form">
                         <div>
-                            <input type="text" data-translate="contact.form.name" placeholder="Your Name" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            <input type="text" name="name" data-translate="contact.form.name" placeholder="Your Name" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                         </div>
                         <div>
-                            <input type="email" data-translate="contact.form.email" placeholder="Your Email" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            <input type="email" name="email" data-translate="contact.form.email" placeholder="Your Email" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                         </div>
                         <div>
-                            <input type="tel" data-translate="contact.form.phone" placeholder="Your Phone" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <input type="tel" name="phone" data-translate="contact.form.phone" placeholder="Your Phone" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         </div>
                         <div>
-                            <select class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required id="service-select">
+                            <select name="service" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required id="service-select">
                                 <option value="" data-translate="contact.form.service">Select Service</option>
                                 <option value="landscaping" data-translate="contact.services.landscaping">Landscaping</option>
                                 <option value="pavement" data-translate="contact.services.pavement">Pavement & Hardscaping</option>
@@ -320,7 +320,7 @@
                             </select>
                         </div>
                         <div>
-                            <textarea data-translate="contact.form.message" placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                            <textarea name="message" data-translate="contact.form.message" placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
                         </div>
                         <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition duration-300" data-translate="contact.form.submit">
                             Send Message
@@ -643,9 +643,82 @@
         // Contact form submission
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const successMessage = getNestedTranslation(translations[currentLanguage], 'contact.form.success');
-            alert(successMessage);
-            this.reset();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            
+            // Disable submit button and show loading
+            submitButton.disabled = true;
+            submitButton.textContent = currentLanguage === 'lv' ? 'Sūta...' : 'Sending...';
+            
+            // Prepare data for Google Sheets
+            const data = {
+                name: formData.get('name') || '',
+                email: formData.get('email') || '',
+                phone: formData.get('phone') || '',
+                service: formData.get('service') || '',
+                message: formData.get('message') || '',
+                language: currentLanguage
+            };
+            
+            // Get Google Apps Script URL from admin settings
+            const googleScriptURL = localStorage.getItem('websiteGoogleScriptURL') || localStorage.getItem('googleScriptURL') || 'https://script.google.com/macros/s/AKfycbzvqmQPsUkkJnnd1z-ML7Z2QXDo7i88ZNazjco-NtSgkrfiuT98q9F_Nsnt66G4TOZP/exec';
+            
+            // Check if URL has been configured
+            if (!googleScriptURL) {
+                // Fallback to local alert if Google Script URL not configured
+                const successMessage = getNestedTranslation(translations[currentLanguage], 'contact.form.success');
+                alert(successMessage + '\n\nNote: To save form submissions to Google Sheets, please configure the Google Script URL in the admin panel.');
+                this.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+                return;
+            }
+            
+            // Send data to Google Sheets using form submission to avoid CORS issues
+            const form = document.createElement('form');
+            form.action = googleScriptURL;
+            form.method = 'POST';
+            form.style.display = 'none';
+            
+            // Add form fields
+            Object.keys(data).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            });
+            
+            // Create iframe to submit form without page redirect
+            const iframe = document.createElement('iframe');
+            iframe.name = 'hidden_iframe';
+            iframe.style.display = 'none';
+            form.target = 'hidden_iframe';
+            
+            // Add to page and submit
+            document.body.appendChild(iframe);
+            document.body.appendChild(form);
+            
+            // Handle submission completion
+            iframe.onload = function() {
+                const successMessage = getNestedTranslation(translations[currentLanguage], 'contact.form.success');
+                alert(successMessage);
+                
+                // Clean up
+                document.body.removeChild(form);
+                document.body.removeChild(iframe);
+                
+                // Reset form and button
+                document.getElementById('contact-form').reset();
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            };
+            
+            // Submit the form
+            form.submit();
         });
     </script>
 </body>
