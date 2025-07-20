@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "landscaping": "Landscaping",
+    "pavement": "Pavement",
+    "services": "Other Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Transform Your Outdoor Space",
+    "subtitle": "Professional landscaping, hardscaping, and pavement services to bring your vision to life. Creating beautiful, functional outdoor spaces for over a decade.",
+    "cta": "Explore Our Services"
+  },
+  "landscaping": {
+    "title": "Landscaping Services",
+    "subtitle": "Create stunning outdoor environments with our comprehensive landscaping solutions. From design to installation, we bring nature's beauty to your doorstep.",
+    "garden": {
+      "title": "Garden Design",
+      "description": "Custom garden layouts that complement your home's architecture and reflect your personal style preferences."
+    },
+    "plant": {
+      "title": "Plant Installation",
+      "description": "Professional selection and installation of trees, shrubs, and flowers that thrive in your local climate."
+    },
+    "irrigation": {
+      "title": "Irrigation Systems",
+      "description": "Efficient watering solutions to keep your landscape healthy while conserving water and reducing maintenance."
+    }
+  },
+  "pavement": {
+    "title": "Pavement & Hardscaping",
+    "subtitle": "Durable, beautiful hardscaping solutions including driveways, walkways, patios, and retaining walls that enhance your property's functionality and value.",
+    "driveways": {
+      "title": "Driveways",
+      "description": "Stunning, durable driveways using premium materials like concrete, asphalt, and decorative pavers."
+    },
+    "walkways": {
+      "title": "Walkways & Patios",
+      "description": "Beautiful pathways and outdoor living spaces that connect and enhance your landscape design."
+    },
+    "retaining": {
+      "title": "Retaining Walls",
+      "description": "Functional and attractive retaining walls that prevent erosion while adding visual interest to your landscape."
+    }
+  },
+  "services": {
+    "title": "Other Professional Services",
+    "subtitle": "Complete your outdoor transformation with our additional services including fencing, outdoor lighting, water features, and ongoing maintenance programs.",
+    "fencing": {
+      "title": "Fencing Solutions",
+      "description": "Privacy, decorative, and security fencing options in wood, vinyl, metal, and composite materials."
+    },
+    "lighting": {
+      "title": "Outdoor Lighting",
+      "description": "Landscape lighting systems that enhance security, safety, and the beauty of your outdoor spaces."
+    },
+    "maintenance": {
+      "title": "Maintenance Programs",
+      "description": "Comprehensive care packages to keep your landscape looking pristine throughout every season."
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to transform your outdoor space? Contact us today for a free consultation and estimate.",
+    "form": {
+      "title": "Request a Quote",
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Your Phone",
+      "service": "Select Service",
+      "message": "Tell us about your project...",
+      "submit": "Send Message",
+      "success": "Thank you for your message! We will contact you soon."
+    },
+    "services": {
+      "landscaping": "Landscaping",
+      "pavement": "Pavement & Hardscaping",
+      "fencing": "Fencing",
+      "lighting": "Outdoor Lighting",
+      "maintenance": "Maintenance",
+      "other": "Other"
+    }
+  },
+  "footer": {
+    "copyright": "2024 Premier Landscapes. All rights reserved. | Licensed & Insured"
+  }
+} 

@@ -28,11 +28,18 @@
                 <div class="text-2xl font-bold text-green-700">
                     Premier Landscapes
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#landscaping" class="text-gray-700 hover:text-green-600 transition duration-300">Landscaping</a>
-                    <a href="#pavement" class="text-gray-700 hover:text-green-600 transition duration-300">Pavement</a>
-                    <a href="#other-services" class="text-gray-700 hover:text-green-600 transition duration-300">Other Services</a>
-                    <a href="#contact" class="text-gray-700 hover:text-green-600 transition duration-300">Contact</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#landscaping" class="text-gray-700 hover:text-green-600 transition duration-300" data-translate="nav.landscaping">Landscaping</a>
+                    <a href="#pavement" class="text-gray-700 hover:text-green-600 transition duration-300" data-translate="nav.pavement">Pavement</a>
+                    <a href="#other-services" class="text-gray-700 hover:text-green-600 transition duration-300" data-translate="nav.services">Other Services</a>
+                    <a href="#contact" class="text-gray-700 hover:text-green-600 transition duration-300" data-translate="nav.contact">Contact</a>
+                    <!-- Language Toggle -->
+                    <button id="language-toggle" class="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                        <span id="current-language">EN</span>
+                    </button>
                 </div>
                 <button class="md:hidden" id="menu-toggle">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,20 +51,20 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-r from-green-800 to-green-600 text-white py-20">
+    <section id="section-hero" data-section="hero" class="relative bg-gradient-to-r from-green-800 to-green-600 text-white py-20">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl font-bold mb-6">Transform Your Outdoor Space</h1>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Professional landscaping, hardscaping, and pavement services to bring your vision to life. Creating beautiful, functional outdoor spaces for over a decade.</p>
-            <a href="#landscaping" class="bg-white text-green-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">Explore Our Services</a>
+            <h1 class="text-5xl font-bold mb-6" data-translate="hero.title">Transform Your Outdoor Space</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto" data-translate="hero.subtitle">Professional landscaping, hardscaping, and pavement services to bring your vision to life. Creating beautiful, functional outdoor spaces for over a decade.</p>
+            <a href="#landscaping" class="bg-white text-green-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300" data-translate="hero.cta">Explore Our Services</a>
         </div>
     </section>
 
     <!-- Landscaping Section -->
-    <section id="landscaping" class="py-20 bg-white">
+    <section id="landscaping" data-section="landscaping" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Landscaping Services</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Create stunning outdoor environments with our comprehensive landscaping solutions. From design to installation, we bring nature's beauty to your doorstep.</p>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="landscaping.title">Landscaping Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="landscaping.subtitle">Create stunning outdoor environments with our comprehensive landscaping solutions. From design to installation, we bring nature's beauty to your doorstep.</p>
             </div>
             
             <!-- Landscaping Carousel -->
@@ -95,8 +102,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4m0 4v8m0-8h6m0 0V5m0 4v8M3 17h18"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Garden Design</h3>
-                    <p class="text-gray-600">Custom garden layouts that complement your home's architecture and reflect your personal style preferences.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="landscaping.garden.title">Garden Design</h3>
+                    <p class="text-gray-600" data-translate="landscaping.garden.description">Custom garden layouts that complement your home's architecture and reflect your personal style preferences.</p>
                 </div>
                 <div class="text-center p-6 bg-gray-50 rounded-lg">
                     <div class="text-green-600 mb-4">
@@ -104,8 +111,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Plant Installation</h3>
-                    <p class="text-gray-600">Professional selection and installation of trees, shrubs, and flowers that thrive in your local climate.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="landscaping.plant.title">Plant Installation</h3>
+                    <p class="text-gray-600" data-translate="landscaping.plant.description">Professional selection and installation of trees, shrubs, and flowers that thrive in your local climate.</p>
                 </div>
                 <div class="text-center p-6 bg-gray-50 rounded-lg">
                     <div class="text-green-600 mb-4">
@@ -113,19 +120,19 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Irrigation Systems</h3>
-                    <p class="text-gray-600">Efficient watering solutions to keep your landscape healthy while conserving water and reducing maintenance.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="landscaping.irrigation.title">Irrigation Systems</h3>
+                    <p class="text-gray-600" data-translate="landscaping.irrigation.description">Efficient watering solutions to keep your landscape healthy while conserving water and reducing maintenance.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pavement Section -->
-    <section id="pavement" class="py-20 bg-gray-100">
+    <section id="pavement" data-section="pavement" class="py-20 bg-gray-100">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Pavement & Hardscaping</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Durable, beautiful hardscaping solutions including driveways, walkways, patios, and retaining walls that enhance your property's functionality and value.</p>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="pavement.title">Pavement & Hardscaping</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="pavement.subtitle">Durable, beautiful hardscaping solutions including driveways, walkways, patios, and retaining walls that enhance your property's functionality and value.</p>
             </div>
             
             <!-- Pavement Carousel -->
@@ -163,8 +170,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Driveways</h3>
-                    <p class="text-gray-600">Stunning, durable driveways using premium materials like concrete, asphalt, and decorative pavers.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="pavement.driveways.title">Driveways</h3>
+                    <p class="text-gray-600" data-translate="pavement.driveways.description">Stunning, durable driveways using premium materials like concrete, asphalt, and decorative pavers.</p>
                 </div>
                 <div class="text-center p-6 bg-white rounded-lg shadow-md">
                     <div class="text-green-600 mb-4">
@@ -172,8 +179,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Walkways & Patios</h3>
-                    <p class="text-gray-600">Beautiful pathways and outdoor living spaces that connect and enhance your landscape design.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="pavement.walkways.title">Walkways & Patios</h3>
+                    <p class="text-gray-600" data-translate="pavement.walkways.description">Beautiful pathways and outdoor living spaces that connect and enhance your landscape design.</p>
                 </div>
                 <div class="text-center p-6 bg-white rounded-lg shadow-md">
                     <div class="text-green-600 mb-4">
@@ -181,19 +188,19 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Retaining Walls</h3>
-                    <p class="text-gray-600">Functional and attractive retaining walls that prevent erosion while adding visual interest to your landscape.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="pavement.retaining.title">Retaining Walls</h3>
+                    <p class="text-gray-600" data-translate="pavement.retaining.description">Functional and attractive retaining walls that prevent erosion while adding visual interest to your landscape.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Other Services Section -->
-    <section id="other-services" class="py-20 bg-white">
+    <section id="other-services" data-section="services" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Other Professional Services</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Complete your outdoor transformation with our additional services including fencing, outdoor lighting, water features, and ongoing maintenance programs.</p>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4" data-translate="services.title">Other Professional Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="services.subtitle">Complete your outdoor transformation with our additional services including fencing, outdoor lighting, water features, and ongoing maintenance programs.</p>
             </div>
             
             <!-- Other Services Carousel -->
@@ -231,8 +238,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Fencing Solutions</h3>
-                    <p class="text-gray-600">Privacy, decorative, and security fencing options in wood, vinyl, metal, and composite materials.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="services.fencing.title">Fencing Solutions</h3>
+                    <p class="text-gray-600" data-translate="services.fencing.description">Privacy, decorative, and security fencing options in wood, vinyl, metal, and composite materials.</p>
                 </div>
                 <div class="text-center p-6 bg-gray-50 rounded-lg">
                     <div class="text-green-600 mb-4">
@@ -240,8 +247,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Outdoor Lighting</h3>
-                    <p class="text-gray-600">Landscape lighting systems that enhance security, safety, and the beauty of your outdoor spaces.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="services.lighting.title">Outdoor Lighting</h3>
+                    <p class="text-gray-600" data-translate="services.lighting.description">Landscape lighting systems that enhance security, safety, and the beauty of your outdoor spaces.</p>
                 </div>
                 <div class="text-center p-6 bg-gray-50 rounded-lg">
                     <div class="text-green-600 mb-4">
@@ -249,21 +256,21 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Maintenance Programs</h3>
-                    <p class="text-gray-600">Comprehensive care packages to keep your landscape looking pristine throughout every season.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-translate="services.maintenance.title">Maintenance Programs</h3>
+                    <p class="text-gray-600" data-translate="services.maintenance.description">Comprehensive care packages to keep your landscape looking pristine throughout every season.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer with Contact Form -->
-    <footer id="contact" class="bg-gray-800 text-white py-20">
+    <footer id="contact" data-section="contact" class="bg-gray-800 text-white py-20">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Contact Information -->
                 <div>
-                    <h2 class="text-3xl font-bold mb-6">Get In Touch</h2>
-                    <p class="text-gray-300 mb-8">Ready to transform your outdoor space? Contact us today for a free consultation and estimate.</p>
+                    <h2 class="text-3xl font-bold mb-6" data-translate="contact.title">Get In Touch</h2>
+                    <p class="text-gray-300 mb-8" data-translate="contact.subtitle">Ready to transform your outdoor space? Contact us today for a free consultation and estimate.</p>
                     
                     <div class="space-y-4">
                         <div class="flex items-center">
@@ -290,32 +297,32 @@
 
                 <!-- Contact Form -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-6">Request a Quote</h3>
+                    <h3 class="text-2xl font-bold mb-6" data-translate="contact.form.title">Request a Quote</h3>
                     <form class="space-y-4" id="contact-form">
                         <div>
-                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            <input type="text" data-translate="contact.form.name" placeholder="Your Name" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                         </div>
                         <div>
-                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            <input type="email" data-translate="contact.form.email" placeholder="Your Email" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                         </div>
                         <div>
-                            <input type="tel" placeholder="Your Phone" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <input type="tel" data-translate="contact.form.phone" placeholder="Your Phone" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         </div>
                         <div>
-                            <select class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
-                                <option value="">Select Service</option>
-                                <option value="landscaping">Landscaping</option>
-                                <option value="pavement">Pavement & Hardscaping</option>
-                                <option value="fencing">Fencing</option>
-                                <option value="lighting">Outdoor Lighting</option>
-                                <option value="maintenance">Maintenance</option>
-                                <option value="other">Other</option>
+                            <select class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required id="service-select">
+                                <option value="" data-translate="contact.form.service">Select Service</option>
+                                <option value="landscaping" data-translate="contact.services.landscaping">Landscaping</option>
+                                <option value="pavement" data-translate="contact.services.pavement">Pavement & Hardscaping</option>
+                                <option value="fencing" data-translate="contact.services.fencing">Fencing</option>
+                                <option value="lighting" data-translate="contact.services.lighting">Outdoor Lighting</option>
+                                <option value="maintenance" data-translate="contact.services.maintenance">Maintenance</option>
+                                <option value="other" data-translate="contact.services.other">Other</option>
                             </select>
                         </div>
                         <div>
-                            <textarea placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                            <textarea data-translate="contact.form.message" placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition duration-300">
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition duration-300" data-translate="contact.form.submit">
                             Send Message
                         </button>
                     </form>
@@ -323,12 +330,264 @@
             </div>
 
             <div class="border-t border-gray-700 pt-8 mt-12 text-center text-gray-400">
-                <p>&copy; 2024 Premier Landscapes. All rights reserved. | Licensed & Insured</p>
+                <p data-translate="footer.copyright">&copy; 2024 Premier Landscapes. All rights reserved. | Licensed & Insured</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Translation system
+        const translations = {
+            en: {
+                nav: {
+                    landscaping: "Landscaping",
+                    pavement: "Pavement",
+                    services: "Other Services",
+                    contact: "Contact",
+                },
+                hero: {
+                    title: "Transform Your Outdoor Space",
+                    subtitle: "Professional landscaping, hardscaping, and pavement services to bring your vision to life. Creating beautiful, functional outdoor spaces for over a decade.",
+                    cta: "Explore Our Services"
+                },
+                landscaping: {
+                    title: "Landscaping Services",
+                    subtitle: "Create stunning outdoor environments with our comprehensive landscaping solutions. From design to installation, we bring nature's beauty to your doorstep.",
+                    garden: {
+                        title: "Garden Design",
+                        description: "Custom garden layouts that complement your home's architecture and reflect your personal style preferences."
+                    },
+                    plant: {
+                        title: "Plant Installation",
+                        description: "Professional selection and installation of trees, shrubs, and flowers that thrive in your local climate."
+                    },
+                    irrigation: {
+                        title: "Irrigation Systems",
+                        description: "Efficient watering solutions to keep your landscape healthy while conserving water and reducing maintenance."
+                    }
+                },
+                pavement: {
+                    title: "Pavement & Hardscaping",
+                    subtitle: "Durable, beautiful hardscaping solutions including driveways, walkways, patios, and retaining walls that enhance your property's functionality and value.",
+                    driveways: {
+                        title: "Driveways",
+                        description: "Stunning, durable driveways using premium materials like concrete, asphalt, and decorative pavers."
+                    },
+                    walkways: {
+                        title: "Walkways & Patios",
+                        description: "Beautiful pathways and outdoor living spaces that connect and enhance your landscape design."
+                    },
+                    retaining: {
+                        title: "Retaining Walls",
+                        description: "Functional and attractive retaining walls that prevent erosion while adding visual interest to your landscape."
+                    }
+                },
+                services: {
+                    title: "Other Professional Services",
+                    subtitle: "Complete your outdoor transformation with our additional services including fencing, outdoor lighting, water features, and ongoing maintenance programs.",
+                    fencing: {
+                        title: "Fencing Solutions",
+                        description: "Privacy, decorative, and security fencing options in wood, vinyl, metal, and composite materials."
+                    },
+                    lighting: {
+                        title: "Outdoor Lighting",
+                        description: "Landscape lighting systems that enhance security, safety, and the beauty of your outdoor spaces."
+                    },
+                    maintenance: {
+                        title: "Maintenance Programs",
+                        description: "Comprehensive care packages to keep your landscape looking pristine throughout every season."
+                    }
+                },
+                contact: {
+                    title: "Get In Touch",
+                    subtitle: "Ready to transform your outdoor space? Contact us today for a free consultation and estimate.",
+                    form: {
+                        title: "Request a Quote",
+                        name: "Your Name",
+                        email: "Your Email",
+                        phone: "Your Phone",
+                        service: "Select Service",
+                        message: "Tell us about your project...",
+                        submit: "Send Message",
+                        success: "Thank you for your message! We will contact you soon."
+                    },
+                    services: {
+                        landscaping: "Landscaping",
+                        pavement: "Pavement & Hardscaping",
+                        fencing: "Fencing",
+                        lighting: "Outdoor Lighting",
+                        maintenance: "Maintenance",
+                        other: "Other"
+                    }
+                },
+                footer: {
+                    copyright: "2024 Premier Landscapes. All rights reserved. | Licensed & Insured"
+                }
+            },
+            lv: {
+                nav: {
+                    landscaping: "Ainavu dizains",
+                    pavement: "Bruģēšana",
+                    services: "Citi pakalpojumi",
+                    contact: "Kontakti"
+                },
+                hero: {
+                    title: "Pārveidojiet savu ārtelpu",
+                    subtitle: "Profesionāli ainavu dizaina, cieto segumu un bruģēšanas pakalpojumi, lai īstenotu jūsu vīziju. Radām skaistas, funkcionālas āra telpas jau vairāk nekā desmit gadus.",
+                    cta: "Apskatīt mūsu pakalpojumus"
+                },
+                landscaping: {
+                    title: "Ainavu dizaina pakalpojumi",
+                    subtitle: "Radiet pārsteidzošas āra vides ar mūsu visaptverošajiem ainavu dizaina risinājumiem. No dizaina līdz uzstādīšanai, mēs nesam dabas skaistumu pie jūsu durvīm.",
+                    garden: {
+                        title: "Dārza dizains",
+                        description: "Pielāgoti dārza izkārtojumi, kas papildina jūsu mājas arhitektūru un atspoguļo jūsu personīgās stila preferences."
+                    },
+                    plant: {
+                        title: "Augu stādīšana",
+                        description: "Profesionāla koku, krūmu un ziedu atlase un stādīšana, kas labi aug jūsu vietējā klimatā."
+                    },
+                    irrigation: {
+                        title: "Apūdeņošanas sistēmas",
+                        description: "Efektīvi aplaistīšanas risinājumi, lai uzturētu jūsu ainavu veselīgu, vienlaikus taupot ūdeni un samazinot apkopi."
+                    }
+                },
+                pavement: {
+                    title: "Bruģēšana un cieto segumu izbūve",
+                    subtitle: "Izturīgi, skaisti cieto segumu risinājumi, ieskaitot piebraucamos ceļus, ietvesm patio un atbalsta sienas, kas uzlabo jūsu īpašuma funkcionalitāti un vērtību.",
+                    driveways: {
+                        title: "Piebraucamie ceļi",
+                        description: "Satriecoši, izturīgi piebraucamie ceļi, izmantojot augstākās kvalitātes materiālus, piemēram, betonu, asfaltu un dekoratīvos bruģakmeņus."
+                    },
+                    walkways: {
+                        title: "Ietvesm & Patio",
+                        description: "Skaisti celiņi un āra dzīvošanas telpas, kas savieno un uzlabo jūsu ainavu dizainu."
+                    },
+                    retaining: {
+                        title: "Atbalsta sienas",
+                        description: "Funkcionālas un pievilcīgas atbalsta sienas, kas novērš eroziju, vienlaikus piešķirot vizuālu interesi jūsu ainavai."
+                    }
+                },
+                services: {
+                    title: "Citi profesionālie pakalpojumi",
+                    subtitle: "Pabeidziet savu āra transformāciju ar mūsu papildu pakalpojumiem, ieskaitot žogošanu, āra apgaismojumu, ūdens elementus un pastāvīgas apkopes programmas.",
+                    fencing: {
+                        title: "Žogošanas risinājumi",
+                        description: "Privātuma, dekoratīvi un drošības žogi no koka, vinila, metāla un kompozītmateriāliem."
+                    },
+                    lighting: {
+                        title: "Āra apgaismojums",
+                        description: "Ainavu apgaismojuma sistēmas, kas uzlabo drošību, drošību un jūsu ārtelpu skaistumu."
+                    },
+                    maintenance: {
+                        title: "Apkopes programmas",
+                        description: "Visaptverošie aprūpes paketes, lai jūsu ainava izskatītos nevainojami visos gadalaikos."
+                    }
+                },
+                contact: {
+                    title: "Sazinājieties ar mums",
+                    subtitle: "Gatavi pārveidot savu āra telpu? Sazinieties ar mums šodien bezmaksas konsultācijai un cenu aplēsei.",
+                    form: {
+                        title: "Pieprasīt cenu aprēķinu",
+                        name: "Jūsu vārds",
+                        email: "Jūsu e-pasts",
+                        phone: "Jūsu tālrunis",
+                        service: "Izvēlieties pakalpojumu",
+                        message: "Pastāstiet mums par savu projektu...",
+                        submit: "Sūtīt ziņojumu",
+                        success: "Paldies par jūsu ziņojumu! Mēs ar jums sazināsimies drīzumā."
+                    },
+                    services: {
+                        landscaping: "Ainavu dizains",
+                        pavement: "Bruģēšana un cieto segumu izbūve",
+                        fencing: "Žogošana",
+                        lighting: "Āra apgaismojums",
+                        maintenance: "Apkope",
+                        other: "Cits"
+                    }
+                },
+                footer: {
+                    copyright: "2024 Premier Landscapes. Visas tiesības aizsargātas. | Licencēts un apdrošināts"
+                }
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        // Load updated translations from admin panel if available
+        function loadUpdatedTranslations() {
+            const savedTranslations = localStorage.getItem('websiteTranslations');
+            if (savedTranslations) {
+                const updated = JSON.parse(savedTranslations);
+                Object.assign(translations, updated);
+            }
+        }
+
+        // Function to update all translatable elements
+        function updateTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = getNestedTranslation(translations[currentLanguage], key);
+                if (translation) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            });
+
+            // Update language indicator
+            document.getElementById('current-language').textContent = currentLanguage.toUpperCase();
+            
+            // Save language preference
+            localStorage.setItem('language', currentLanguage);
+        }
+
+        // Helper function to get nested translation
+        function getNestedTranslation(obj, key) {
+            return key.split('.').reduce((o, k) => o && o[k], obj);
+        }
+
+        // Language toggle functionality
+        document.getElementById('language-toggle').addEventListener('click', function() {
+            currentLanguage = currentLanguage === 'en' ? 'lv' : 'en';
+            updateTranslations();
+        });
+
+        // Section ordering functionality
+        function applySectionOrder() {
+            const savedOrder = localStorage.getItem('websiteSectionOrder');
+            if (!savedOrder) return;
+
+            try {
+                const sectionOrder = JSON.parse(savedOrder);
+                const headerElement = document.querySelector('header');
+                
+                // Find the insertion point (after header)
+                const insertionPoint = headerElement.nextElementSibling;
+                
+                // Reorder sections based on saved order
+                sectionOrder.forEach(section => {
+                    const sectionElement = document.querySelector(`[data-section="${section.id}"]`);
+                    if (sectionElement) {
+                        // Move the section to the correct position
+                        headerElement.parentNode.insertBefore(sectionElement, insertionPoint);
+                    }
+                });
+            } catch (error) {
+                console.error('Error applying section order:', error);
+            }
+        }
+
+        // Initialize translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUpdatedTranslations();
+            applySectionOrder();
+            updateTranslations();
+        });
+
         // Carousel functionality
         const carousels = {
             landscaping: { currentSlide: 0, totalSlides: 4 },
@@ -384,7 +643,8 @@
         // Contact form submission
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will contact you soon.');
+            const successMessage = getNestedTranslation(translations[currentLanguage], 'contact.form.success');
+            alert(successMessage);
             this.reset();
         });
     </script>

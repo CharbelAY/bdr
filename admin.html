@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Content Editor - Premier Landscapes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .admin-section {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .admin-section.active {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        .save-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #10b981;
+            color: white;
+            border-radius: 6px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="save-indicator" id="saveIndicator">
+        ✓ Changes saved locally
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">Website Content Editor</h1>
+                    <p class="text-gray-600">Edit your website content easily</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="previewChanges()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Preview Website
+                    </button>
+                    <button onclick="downloadFiles()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                        Download Files
+                    </button>
+                    <button onclick="resetToOriginal()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                        Reset All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 py-8">
+        <!-- Language Selector -->
+        <div class="mb-8 bg-white p-6 rounded-lg shadow-sm">
+            <h2 class="text-xl font-bold mb-4">Select Language to Edit</h2>
+            <div class="flex space-x-4">
+                <button onclick="switchLanguage('en')" id="btn-en" class="px-6 py-3 bg-blue-600 text-white rounded font-semibold">
+                    English
+                </button>
+                <button onclick="switchLanguage('lv')" id="btn-lv" class="px-6 py-3 bg-gray-300 text-gray-700 rounded font-semibold">
+                    Latvian
+                </button>
+            </div>
+        </div>
+
+        <!-- Section Order Configuration -->
+        <div class="mb-8 bg-white p-6 rounded-lg shadow-sm">
+            <h2 class="text-xl font-bold mb-4">📐 Section Order</h2>
+            <p class="text-gray-600 mb-4">Drag sections to reorder them on your website</p>
+            <div id="sectionOrderList" class="space-y-2">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <button onclick="resetSectionOrder()" class="mt-4 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                Reset to Default Order
+            </button>
+        </div>
+
+        <!-- Content Editor -->
+        <div id="contentEditor">
+            <!-- Navigation Section -->
+            <div class="admin-section bg-white p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-4 text-green-700">📍 Navigation Menu</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Landscaping</label>
+                        <input type="text" id="nav.landscaping" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Pavement</label>
+                        <input type="text" id="nav.pavement" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Other Services</label>
+                        <input type="text" id="nav.services" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Contact</label>
+                        <input type="text" id="nav.contact" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Section -->
+            <div class="admin-section bg-white p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-4 text-green-700">🎯 Hero Section (Top of Page)</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Main Title</label>
+                        <input type="text" id="hero.title" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Subtitle Description</label>
+                        <textarea id="hero.subtitle" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Button Text</label>
+                        <input type="text" id="hero.cta" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Landscaping Section -->
+            <div class="admin-section bg-white p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-4 text-green-700">🌱 Landscaping Services</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Section Title</label>
+                        <input type="text" id="landscaping.title" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Section Description</label>
+                        <textarea id="landscaping.subtitle" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mt-6">
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-semibold mb-2">Garden Design</h4>
+                            <input type="text" id="landscaping.garden.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="landscaping.garden.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-semibold mb-2">Plant Installation</h4>
+                            <input type="text" id="landscaping.plant.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="landscaping.plant.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-semibold mb-2">Irrigation Systems</h4>
+                            <input type="text" id="landscaping.irrigation.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="landscaping.irrigation.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pavement Section -->
+            <div class="admin-section bg-white p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-4 text-green-700">🚗 Pavement & Hardscaping</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Section Title</label>
+                        <input type="text" id="pavement.title" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Section Description</label>
+                        <textarea id="pavement.subtitle" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mt-6">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-semibold mb-2">Driveways</h4>
+                            <input type="text" id="pavement.driveways.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="pavement.driveways.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-semibold mb-2">Walkways & Patios</h4>
+                            <input type="text" id="pavement.walkways.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="pavement.walkways.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-semibold mb-2">Retaining Walls</h4>
+                            <input type="text" id="pavement.retaining.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="pavement.retaining.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Services Section -->
+            <div class="admin-section bg-white p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-4 text-green-700">🔧 Other Services</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Section Title</label>
+                        <input type="text" id="services.title" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Section Description</label>
+                        <textarea id="services.subtitle" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mt-6">
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-semibold mb-2">Fencing</h4>
+                            <input type="text" id="services.fencing.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="services.fencing.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-semibold mb-2">Outdoor Lighting</h4>
+                            <input type="text" id="services.lighting.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="services.lighting.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-semibold mb-2">Maintenance</h4>
+                            <input type="text" id="services.maintenance.title" placeholder="Service Title" class="w-full border rounded px-3 py-2 mb-2" onchange="updateContent(this)">
+                            <textarea id="services.maintenance.description" placeholder="Service Description" rows="3" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="admin-section bg-white p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-4 text-green-700">📞 Contact Section</h3>
+                <div class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Contact Title</label>
+                            <input type="text" id="contact.title" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Contact Description</label>
+                            <textarea id="contact.subtitle" rows="2" class="w-full border rounded px-3 py-2" onchange="updateContent(this)"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t pt-4">
+                        <h4 class="font-semibold mb-3">Contact Form Labels</h4>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Form Title</label>
+                                <input type="text" id="contact.form.title" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Name Placeholder</label>
+                                <input type="text" id="contact.form.name" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email Placeholder</label>
+                                <input type="text" id="contact.form.email" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Phone Placeholder</label>
+                                <input type="text" id="contact.form.phone" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Message Placeholder</label>
+                                <input type="text" id="contact.form.message" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Submit Button</label>
+                                <input type="text" id="contact.form.submit" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="admin-section bg-white p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-4 text-green-700">🔗 Footer</h3>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Copyright Text</label>
+                    <input type="text" id="footer.copyright" class="w-full border rounded px-3 py-2" onchange="updateContent(this)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg mt-8">
+            <h3 class="text-lg font-bold mb-3 text-blue-800">📋 How to Use</h3>
+            <ol class="list-decimal list-inside space-y-2 text-blue-700">
+                <li>Choose the language you want to edit (English or Latvian)</li>
+                <li>Edit the text in any field - changes are saved automatically</li>
+                <li>Click "Preview Website" to see your changes on the main site</li>
+                <li>Click "Download Files" to get the updated translation files</li>
+                <li>Replace the files in your translations folder with the downloaded ones</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'en';
+        let translations = {};
+        
+        // Define sections and their default order
+        const defaultSectionOrder = [
+            { id: 'hero', name: 'Hero Section', icon: '🎯' },
+            { id: 'landscaping', name: 'Landscaping Services', icon: '🌱' },
+            { id: 'pavement', name: 'Pavement & Hardscaping', icon: '🚗' },
+            { id: 'services', name: 'Other Services', icon: '🔧' },
+            { id: 'contact', name: 'Contact Section', icon: '📞' }
+        ];
+        
+        let currentSectionOrder = [...defaultSectionOrder];
+
+        // Load translations
+        async function loadTranslations() {
+            try {
+                const [enResponse, lvResponse] = await Promise.all([
+                    fetch('./translations/en.json'),
+                    fetch('./translations/lv.json')
+                ]);
+                
+                translations.en = await enResponse.json();
+                translations.lv = await lvResponse.json();
+                
+                // Load from localStorage if exists
+                const savedTranslations = localStorage.getItem('websiteTranslations');
+                if (savedTranslations) {
+                    const saved = JSON.parse(savedTranslations);
+                    translations = { ...translations, ...saved };
+                }
+                
+                populateForm();
+            } catch (error) {
+                console.error('Error loading translations:', error);
+                alert('Error loading translation files. Please make sure the translation files exist.');
+            }
+        }
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update button styles
+            document.getElementById('btn-en').className = lang === 'en' 
+                ? 'px-6 py-3 bg-blue-600 text-white rounded font-semibold'
+                : 'px-6 py-3 bg-gray-300 text-gray-700 rounded font-semibold';
+            document.getElementById('btn-lv').className = lang === 'lv' 
+                ? 'px-6 py-3 bg-blue-600 text-white rounded font-semibold'
+                : 'px-6 py-3 bg-gray-300 text-gray-700 rounded font-semibold';
+            
+            populateForm();
+        }
+
+        function populateForm() {
+            const data = translations[currentLanguage];
+            if (!data) return;
+
+            // Helper function to set nested values
+            function setValue(path, value) {
+                const element = document.getElementById(path);
+                if (element) {
+                    element.value = value || '';
+                }
+            }
+
+            // Populate all fields
+            setValue('nav.landscaping', data.nav?.landscaping);
+            setValue('nav.pavement', data.nav?.pavement);
+            setValue('nav.services', data.nav?.services);
+            setValue('nav.contact', data.nav?.contact);
+
+            setValue('hero.title', data.hero?.title);
+            setValue('hero.subtitle', data.hero?.subtitle);
+            setValue('hero.cta', data.hero?.cta);
+
+            setValue('landscaping.title', data.landscaping?.title);
+            setValue('landscaping.subtitle', data.landscaping?.subtitle);
+            setValue('landscaping.garden.title', data.landscaping?.garden?.title);
+            setValue('landscaping.garden.description', data.landscaping?.garden?.description);
+            setValue('landscaping.plant.title', data.landscaping?.plant?.title);
+            setValue('landscaping.plant.description', data.landscaping?.plant?.description);
+            setValue('landscaping.irrigation.title', data.landscaping?.irrigation?.title);
+            setValue('landscaping.irrigation.description', data.landscaping?.irrigation?.description);
+
+            setValue('pavement.title', data.pavement?.title);
+            setValue('pavement.subtitle', data.pavement?.subtitle);
+            setValue('pavement.driveways.title', data.pavement?.driveways?.title);
+            setValue('pavement.driveways.description', data.pavement?.driveways?.description);
+            setValue('pavement.walkways.title', data.pavement?.walkways?.title);
+            setValue('pavement.walkways.description', data.pavement?.walkways?.description);
+            setValue('pavement.retaining.title', data.pavement?.retaining?.title);
+            setValue('pavement.retaining.description', data.pavement?.retaining?.description);
+
+            setValue('services.title', data.services?.title);
+            setValue('services.subtitle', data.services?.subtitle);
+            setValue('services.fencing.title', data.services?.fencing?.title);
+            setValue('services.fencing.description', data.services?.fencing?.description);
+            setValue('services.lighting.title', data.services?.lighting?.title);
+            setValue('services.lighting.description', data.services?.lighting?.description);
+            setValue('services.maintenance.title', data.services?.maintenance?.title);
+            setValue('services.maintenance.description', data.services?.maintenance?.description);
+
+            setValue('contact.title', data.contact?.title);
+            setValue('contact.subtitle', data.contact?.subtitle);
+            setValue('contact.form.title', data.contact?.form?.title);
+            setValue('contact.form.name', data.contact?.form?.name);
+            setValue('contact.form.email', data.contact?.form?.email);
+            setValue('contact.form.phone', data.contact?.form?.phone);
+            setValue('contact.form.message', data.contact?.form?.message);
+            setValue('contact.form.submit', data.contact?.form?.submit);
+
+            setValue('footer.copyright', data.footer?.copyright);
+        }
+
+        function updateContent(element) {
+            const path = element.id;
+            const value = element.value;
+            
+            // Update translations object
+            const keys = path.split('.');
+            let current = translations[currentLanguage];
+            
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!current[keys[i]]) current[keys[i]] = {};
+                current = current[keys[i]];
+            }
+            current[keys[keys.length - 1]] = value;
+            
+            // Save to localStorage
+            localStorage.setItem('websiteTranslations', JSON.stringify(translations));
+            
+            // Show save indicator
+            showSaveIndicator();
+
+            // Highlight the section being edited
+            const section = element.closest('.admin-section');
+            section.classList.add('active');
+            setTimeout(() => section.classList.remove('active'), 1000);
+        }
+
+        function showSaveIndicator() {
+            const indicator = document.getElementById('saveIndicator');
+            indicator.style.display = 'block';
+            setTimeout(() => {
+                indicator.style.display = 'none';
+            }, 2000);
+        }
+
+        function downloadFiles() {
+            // Create download links for both languages
+            const enContent = JSON.stringify(translations.en, null, 2);
+            const lvContent = JSON.stringify(translations.lv, null, 2);
+            
+            downloadFile('en.json', enContent);
+            downloadFile('lv.json', lvContent);
+            
+            alert('Translation files downloaded! Replace the files in your translations/ folder with these new files.');
+        }
+
+        function downloadFile(filename, content) {
+            const blob = new Blob([content], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function previewChanges() {
+            // Open the main website in a new tab
+            window.open('./index.html', '_blank');
+        }
+
+        function resetToOriginal() {
+            if (confirm('Are you sure you want to reset all changes? This cannot be undone.')) {
+                localStorage.removeItem('websiteTranslations');
+                location.reload();
+            }
+        }
+
+        // Section ordering functions
+        function renderSectionOrder() {
+            const container = document.getElementById('sectionOrderList');
+            container.innerHTML = '';
+            
+            currentSectionOrder.forEach((section, index) => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center justify-between p-3 bg-gray-50 border rounded-lg cursor-move';
+                item.draggable = true;
+                item.dataset.sectionId = section.id;
+                
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="text-lg">${section.icon}</span>
+                        <span class="font-medium">${section.name}</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="moveSectionUp(${index})" class="px-2 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600" ${index === 0 ? 'disabled' : ''}>
+                            ↑
+                        </button>
+                        <button onclick="moveSectionDown(${index})" class="px-2 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600" ${index === currentSectionOrder.length - 1 ? 'disabled' : ''}>
+                            ↓
+                        </button>
+                    </div>
+                `;
+                
+                // Add drag and drop event listeners
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragover', handleDragOver);
+                item.addEventListener('drop', handleDrop);
+                item.addEventListener('dragend', handleDragEnd);
+                
+                container.appendChild(item);
+            });
+        }
+        
+        function moveSectionUp(index) {
+            if (index > 0) {
+                [currentSectionOrder[index], currentSectionOrder[index - 1]] = 
+                [currentSectionOrder[index - 1], currentSectionOrder[index]];
+                saveSectionOrder();
+                renderSectionOrder();
+            }
+        }
+        
+        function moveSectionDown(index) {
+            if (index < currentSectionOrder.length - 1) {
+                [currentSectionOrder[index], currentSectionOrder[index + 1]] = 
+                [currentSectionOrder[index + 1], currentSectionOrder[index]];
+                saveSectionOrder();
+                renderSectionOrder();
+            }
+        }
+        
+        function saveSectionOrder() {
+            localStorage.setItem('websiteSectionOrder', JSON.stringify(currentSectionOrder));
+            showSaveIndicator();
+        }
+        
+        function loadSectionOrder() {
+            const saved = localStorage.getItem('websiteSectionOrder');
+            if (saved) {
+                currentSectionOrder = JSON.parse(saved);
+            }
+            renderSectionOrder();
+        }
+        
+        function resetSectionOrder() {
+            if (confirm('Reset section order to default?')) {
+                currentSectionOrder = [...defaultSectionOrder];
+                saveSectionOrder();
+                renderSectionOrder();
+            }
+        }
+        
+        // Drag and drop handlers
+        let draggedElement = null;
+        
+        function handleDragStart(e) {
+            draggedElement = e.target;
+            e.target.style.opacity = '0.5';
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            if (draggedElement !== e.target && e.target.classList.contains('cursor-move')) {
+                const draggedId = draggedElement.dataset.sectionId;
+                const targetId = e.target.dataset.sectionId;
+                
+                const draggedIndex = currentSectionOrder.findIndex(s => s.id === draggedId);
+                const targetIndex = currentSectionOrder.findIndex(s => s.id === targetId);
+                
+                // Swap sections
+                [currentSectionOrder[draggedIndex], currentSectionOrder[targetIndex]] = 
+                [currentSectionOrder[targetIndex], currentSectionOrder[draggedIndex]];
+                
+                saveSectionOrder();
+                renderSectionOrder();
+            }
+        }
+        
+        function handleDragEnd(e) {
+            e.target.style.opacity = '1';
+            draggedElement = null;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTranslations();
+            loadSectionOrder();
+        });
+    </script>
+</body>
+</html> 

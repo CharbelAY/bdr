@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "landscaping": "Ainavu dizains",
+    "pavement": "Bruģēšana",
+    "services": "Citi pakalpojumi",
+    "contact": "Kontakti"
+  },
+  "hero": {
+    "title": "Pārveidojiet savu ārtelpu",
+    "subtitle": "Profesionāli ainavu dizaina, cieto segumu un bruģēšanas pakalpojumi, lai īstenotu jūsu vīziju. Radām skaistas, funkcionālas āra telpas jau vairāk nekā desmit gadus.",
+    "cta": "Apskatīt mūsu pakalpojumus"
+  },
+  "landscaping": {
+    "title": "Ainavu dizaina pakalpojumi",
+    "subtitle": "Radiet pārsteidzošas āra vides ar mūsu visaptverošajiem ainavu dizaina risinājumiem. No dizaina līdz uzstādīšanai, mēs nesam dabas skaistumu pie jūsu durvīm.",
+    "garden": {
+      "title": "Dārza dizains",
+      "description": "Pielāgoti dārza izkārtojumi, kas papildina jūsu mājas arhitektūru un atspoguļo jūsu personīgās stila preferences."
+    },
+    "plant": {
+      "title": "Augu stādīšana",
+      "description": "Profesionāla koku, krūmu un ziedu atlase un stādīšana, kas labi aug jūsu vietējā klimatā."
+    },
+    "irrigation": {
+      "title": "Apūdeņošanas sistēmas",
+      "description": "Efektīvi aplaistīšanas risinājumi, lai uzturētu jūsu ainavu veselīgu, vienlaikus taupot ūdeni un samazinot apkopi."
+    }
+  },
+  "pavement": {
+    "title": "Bruģēšana un cieto segumu izbūve",
+    "subtitle": "Izturīgi, skaisti cieto segumu risinājumi, ieskaitot piebraucamos ceļus, ietvesm patio un atbalsta sienas, kas uzlabo jūsu īpašuma funkcionalitāti un vērtību.",
+    "driveways": {
+      "title": "Piebraucamie ceļi",
+      "description": "Satriecoši, izturīgi piebraucamie ceļi, izmantojot augstākās kvalitātes materiālus, piemēram, betonu, asfaltu un dekoratīvos bruģakmeņus."
+    },
+    "walkways": {
+      "title": "Ietvesm & Patio",
+      "description": "Skaisti celiņi un āra dzīvošanas telpas, kas savieno un uzlabo jūsu ainavu dizainu."
+    },
+    "retaining": {
+      "title": "Atbalsta sienas",
+      "description": "Funkcionālas un pievilcīgas atbalsta sienas, kas novērš eroziju, vienlaikus piešķirot vizuālu interesi jūsu ainavai."
+    }
+  },
+  "services": {
+    "title": "Citi profesionālie pakalpojumi",
+    "subtitle": "Pabeidziet savu āra transformāciju ar mūsu papildu pakalpojumiem, ieskaitot žogošanu, āra apgaismojumu, ūdens elementus un pastāvīgas apkopes programmas.",
+    "fencing": {
+      "title": "Žogošanas risinājumi",
+      "description": "Privātuma, dekoratīvi un drošības žogi no koka, vinila, metāla un kompozītmateriāliem."
+    },
+    "lighting": {
+      "title": "Āra apgaismojums",
+      "description": "Ainavu apgaismojuma sistēmas, kas uzlabo drošību, drošību un jūsu ārtelpu skaistumu."
+    },
+    "maintenance": {
+      "title": "Apkopes programmas",
+      "description": "Visaptverošie aprūpes paketes, lai jūsu ainava izskatītos nevainojami visos gadalaikos."
+    }
+  },
+  "contact": {
+    "title": "Sazinājieties ar mums",
+    "subtitle": "Gatavi pārveidot savu āra telpu? Sazinieties ar mums šodien bezmaksas konsultācijai un cenu aplēsei.",
+    "form": {
+      "title": "Pieprasīt cenu aprēķinu",
+      "name": "Jūsu vārds",
+      "email": "Jūsu e-pasts",
+      "phone": "Jūsu tālrunis",
+      "service": "Izvēlieties pakalpojumu",
+      "message": "Pastāstiet mums par savu projektu...",
+      "submit": "Sūtīt ziņojumu",
+      "success": "Paldies par jūsu ziņojumu! Mēs ar jums sazināsimies drīzumā."
+    },
+    "services": {
+      "landscaping": "Ainavu dizains",
+      "pavement": "Bruģēšana un cieto segumu izbūve",
+      "fencing": "Žogošana",
+      "lighting": "Āra apgaismojums",
+      "maintenance": "Apkope",
+      "other": "Cits"
+    }
+  },
+  "footer": {
+    "copyright": "2024 Premier Landscapes. Visas tiesības aizsargātas. | Licencēts un apdrošināts"
+  }
+} 
